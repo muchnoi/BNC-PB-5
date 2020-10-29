@@ -20,41 +20,109 @@ QSpinBox {             background-color: #FFFFFF; }
 QDoubleSpinBox {background-color: #FFFFFF;} </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_4">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="settings_tab">
        <attribute name="title">
-        <string>Manual</string>
+        <string>Settings</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QFrame" name="frame">
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
+          <property name="title">
+           <string>Connection Settings</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QGroupBox" name="groupBox">
-             <property name="title">
-              <string>Connection Settings</string>
+            <widget class="QComboBox" name="SerialPortBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <widget class="QComboBox" name="SerialPortBox">
-              <property name="geometry">
-               <rect>
-                <x>30</x>
-                <y>90</y>
-                <width>221</width>
-                <height>24</height>
-               </rect>
-              </property>
-             </widget>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QCheckBox" name="ConnectCheckBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string>Connection:</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QRadioButton" name="PulseOnButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string>Pulse ON</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QRadioButton" name="PulseOffButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string>Pulse OFF</string>
+             </property>
             </widget>
            </item>
           </layout>
@@ -69,6 +137,21 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
            <enum>QFrame::Plain</enum>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="spacing">
+            <number>1</number>
+           </property>
+           <property name="leftMargin">
+            <number>1</number>
+           </property>
+           <property name="topMargin">
+            <number>1</number>
+           </property>
+           <property name="rightMargin">
+            <number>1</number>
+           </property>
+           <property name="bottomMargin">
+            <number>1</number>
+           </property>
            <item>
             <widget class="QGroupBox" name="PulseGroupBox">
              <property name="title">
@@ -79,18 +162,21 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
                <widget class="QComboBox" name="PolarityBox"/>
               </item>
               <item>
-               <widget class="QComboBox" name="RiseTimeBox"/>
-              </item>
-              <item>
-               <widget class="QComboBox" name="FallTimeBox"/>
+               <widget class="QComboBox" name="AttenuateBox"/>
               </item>
               <item>
                <widget class="QDoubleSpinBox" name="AmplitudeBox">
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
                 <property name="prefix">
                  <string>Amplitude: </string>
                 </property>
+                <property name="suffix">
+                 <string> V</string>
+                </property>
                 <property name="decimals">
-                 <number>4</number>
+                 <number>3</number>
                 </property>
                 <property name="maximum">
                  <double>10.000000000000000</double>
@@ -101,7 +187,32 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="AttenuationBox"/>
+               <widget class="QComboBox" name="PulseTopBox"/>
+              </item>
+              <item>
+               <widget class="QComboBox" name="RiseTimeBox"/>
+              </item>
+              <item>
+               <widget class="QComboBox" name="FallTimeBox"/>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="WidthBox">
+                <property name="prefix">
+                 <string>Width: </string>
+                </property>
+                <property name="suffix">
+                 <string> μs</string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>0.100000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>10000.000000000000000</double>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QComboBox" name="ClampBox"/>
@@ -126,12 +237,30 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
                 <property name="prefix">
                  <string>Frequency: </string>
                 </property>
+                <property name="minimum">
+                 <number>2</number>
+                </property>
+                <property name="maximum">
+                 <number>500000</number>
+                </property>
+                <property name="singleStep">
+                 <number>10</number>
+                </property>
                </widget>
               </item>
               <item>
                <widget class="QDoubleSpinBox" name="DelayBox">
                 <property name="prefix">
                  <string>Delay: </string>
+                </property>
+                <property name="suffix">
+                 <string> μs</string>
+                </property>
+                <property name="minimum">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>10000.000000000000000</double>
                 </property>
                </widget>
               </item>
@@ -140,6 +269,9 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
                 <property name="prefix">
                  <string>Threshold: </string>
                 </property>
+                <property name="suffix">
+                 <string> V</string>
+                </property>
                 <property name="maximum">
                  <double>10.000000000000000</double>
                 </property>
@@ -147,8 +279,23 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
               </item>
               <item>
                <widget class="QPushButton" name="TriggerButton">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>50</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>One Pulse Trigger</string>
+                </property>
+                <property name="autoDefault">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -207,7 +354,7 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="RampNumberBox">
+               <widget class="QSpinBox" name="RampCyclBox">
                 <property name="prefix">
                  <string>N of cycles: </string>
                 </property>
@@ -221,8 +368,17 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
               </item>
               <item>
                <widget class="QPushButton" name="RampButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>50</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>Execute Ramp</string>
+                </property>
+                <property name="autoDefault">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -234,10 +390,80 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="values_tab">
        <attribute name="title">
-        <string>Auto</string>
+        <string>Value Set</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="A00">
+          <property name="text">
+           <string>Amp 0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="V00">
+          <property name="suffix">
+           <string> V</string>
+          </property>
+          <property name="decimals">
+           <number>3</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QSpinBox" name="T00">
+          <property name="suffix">
+           <string> s</string>
+          </property>
+          <property name="prefix">
+           <string>exposure time </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QRadioButton" name="radioButton">
+          <property name="text">
+           <string>Status</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="A00_2">
+          <property name="text">
+           <string>Amp 0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="V00_2">
+          <property name="suffix">
+           <string> V</string>
+          </property>
+          <property name="decimals">
+           <number>3</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QSpinBox" name="T00_2">
+          <property name="suffix">
+           <string> s</string>
+          </property>
+          <property name="prefix">
+           <string>exposure time </string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QRadioButton" name="radioButton_2">
+          <property name="text">
+           <string>Status</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -266,6 +492,9 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
   <action name="actionSave_Settings">
    <property name="text">
     <string>Save Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionLoad_Settings">
