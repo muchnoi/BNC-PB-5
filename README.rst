@@ -9,8 +9,8 @@ This software is for enchanced control of the BNC PB-5 Presision Pulse Generator
 - Project Homepage: https://github.com/muchnoi/BNC-PB-5
 - BNC PB-5 Product Page: https://www.berkeleynucleonics.com/model-pb-5-precision-nim-pulse-generator
 
-Now it has not been testes with real pulser.
-All command are just shown in stdout.
+Now it has not been tested with real pulser.
+All command are sent to ``stdout``.
 
 BSD license, (C) 2001-2020 Chris Liechti <cliechti@gmx.net>
 
