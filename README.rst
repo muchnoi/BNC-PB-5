@@ -1,15 +1,16 @@
-=================================
- BNC PB-5 Control  |build-status| |docs|
-=================================
+==================
+ BNC PB-5 Control 
+==================
 
 Overview
 ========
 This software is for enchanced control of the BNC PB-5 Presision Pulse Generator via its RS-232 port.
 
-
-
 - Project Homepage: https://github.com/muchnoi/BNC-PB-5
-- PB-5  Page: https://www.berkeleynucleonics.com/model-pb-5-precision-nim-pulse-generator
+- BNC PB-5 Product Page: https://www.berkeleynucleonics.com/model-pb-5-precision-nim-pulse-generator
+
+Now it has not been testes with real pulser.
+All command are just shown in stdout.
 
 BSD license, (C) 2001-2020 Chris Liechti <cliechti@gmx.net>
 
