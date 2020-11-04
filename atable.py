@@ -61,18 +61,33 @@ class Active_Table:
       self.RandomButton.setText('Stop')
       self.timer.start(1000*self.Time)
       self.timer.timeout.connect(self.Switch)
+      self.PulseOnButton.setChecked(True)
+      self.ExportTable(True)
+      self.exchange(3,  1)
       for el in self.hide: el.setEnabled(False)
     elif 'Stop' in button: 
       self.RandomButton.setText('Start')
       self.timer.timeout.disconnect(self.Switch)
       self.timer.stop()
+      self.PulseOffButton.setChecked(True)
+      self.ExportTable(False)
+      self.exchange(3,  0)
       for el in self.hide: el.setEnabled(True)
 
   def Switch(self):
     i = choices(self.population, cum_weights=self.cumweights, k=1)[0]
     self.R[i].setChecked(True)
     self.exchange(4,  float('{:5.3f}'.format(self.A[2][i])))
-    
+
+  def ExportTable(self, yes):
+    if yes:
+      outs = '# PB5 VOLTS:'
+      for i in self.RNG:
+        if self.C[0][i].isChecked():
+          outs += ' {:5.3f}'.format(self.A[2][i])
+    else: outs = ''
+    with open('PB5.dat', 'wb') as f: f.write(bytes(outs,'utf8'))
+          
   
   def Select(self):
     for i in self.RNG:

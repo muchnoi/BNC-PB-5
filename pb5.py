@@ -87,15 +87,15 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
     self.PB5.config['Volts']       = self.A[2]
     self.PB5.config['Probs']       = self.W[2]
     self.PB5.config['OnOff']       = self.C[1]
-    print('SAVE')
-    for el in self.PB5.config.items(): print (el)
+#    print('SAVE')
+#    for el in self.PB5.config.items(): print (el)
     self.PB5.Save_Parameters()
   
   def Read_Configuration(self):
     self.allow_connection = False
     self.PB5.Read_Parameters()
-    print('READ')
-    for el in self.PB5.config.items(): print (el)
+#    print('READ')
+#    for el in self.PB5.config.items(): print (el)
     self.Volt                         = self.PB5.config['Volt']
     self.Time                         = self.PB5.config['Time']
     self.A[2]                         = self.PB5.config['Volts'] # volts no kev
