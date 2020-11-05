@@ -34,7 +34,7 @@ class Active_Table:
       self.W[0][i].valueChanged.connect(self.Weights)
     widget = self.listframe
     widget.setLayout(layout)
-    self.hide = [self.ResetButton, self.TimerBox, self.PulseGroupBox, self.TriggerGroupBox, self.RampGroupBox, self.ConnectionGroupBox]
+    self.hide = [self.ResetButton, self.TimerBox, self.PulseGroupBox, self.TriggerGroupBox, self.RampGroupBox, self.ConnectionGroupBox, self.listframe]
     
 
   def FillTables(self):
@@ -87,7 +87,6 @@ class Active_Table:
           outs += ' {:5.3f}'.format(self.A[2][i])
     else: outs = ''
     with open('PB5.dat', 'wb') as f: f.write(bytes(outs,'utf8'))
-          
   
   def Select(self):
     for i in self.RNG:
@@ -125,7 +124,10 @@ class Active_Table:
     
   def Amplitudes(self, value):
     for i in self.RNG:
-      if self.A[1][i] != self.A[0][i].value():
-        self.A[1][i]   = self.A[0][i].value()
-        self.A[2][i]   = self.A[2][i]/self.Volt
+      cv = self.A[0][i].value()
+      if self.A[1][i] != cv:
+        self.A[1][i]   = cv
+        self.A[2][i]   = cv/self.Volt
+        
+        
 

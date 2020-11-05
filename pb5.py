@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTimer
 import sys, design, pickle 
 from atable import Active_Table
-#from serial import Serial 
+import time, serial 
 
 class PB5:
   Port    = ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyUSB2', '/dev/ttyS0', '/dev/ttyS1', 'COM1', 'COM1', 'COM3']
@@ -15,7 +15,7 @@ class PB5:
              'Fall Time' :[0.5, 1.0, 2.0, 20.0, 50.0, 100.0, 200.0, 500.0, 1000.0],
              'Attenuate' :[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000],
              'Clamp'     :['OFF', 'ON']}
-  Tell    = ['SET TRIIGGER MODE {}',   'TRIGGER ONE PULSE',     'SET THRESHOLD {:.1f}',    'SET PULSE ON {:1d}',
+  Tell    = ['SET TRIGGER MODE {}',    'TRIGGER ONE PULSE',     'SET THRESHOLD {:.1f}',    'SET PULSE ON {:1d}',
              'SET AMPLITUDE {:.3f}',   'SET REP RATE {:d}',     'SET WIDTH {:d}',          'SET DELAY {:d}',
              'SET RISE TIME {:d}',     'SET FALL TIME {:d}',    'SET TAIL PULSE {:1d}',    'SET POLARITY POSITIVE {:1d}',
              'SET ATTENUATION {:d}',   'SET DISPLAY keV {:1d}', 'SET EQUIVALENT keV {:d}', 'CLAMP BASELINE {:1d}',
@@ -49,16 +49,19 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
     self.actionExit.triggered.connect(self.close)
     self.timer = QTimer()
     self.PB5 = PB5()
+    self.link_is_ready = False
     self.nrows = 16
     self.Init_Widgets()
     Active_Table.__init__(self)
     self.Read_Configuration()
-
     self.actionSave_Settings.triggered.connect(self.Save_Configuration)
     self.actionLoad_Settings.triggered.connect(self.Read_Configuration)
-#    self.tabWidget.setCurrentWidget(self.settings_tab)
     
   def closeEvent(self, event):
+    if self.link_is_ready:
+      if self.link.is_open:
+        self.exchange(3, 0)
+        self.link.close()
     event.accept()
 
   def about(self):
@@ -92,7 +95,6 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
     self.PB5.Save_Parameters()
   
   def Read_Configuration(self):
-    self.allow_connection = False
     self.PB5.Read_Parameters()
 #    print('READ')
 #    for el in self.PB5.config.items(): print (el)
@@ -173,16 +175,21 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
       Wgt.blockSignals(False)
     self.Volt = k
     
-
   def serial_connection(self, index):
-#    self.link = serial.Serial() 
-    self.link = self.PB5.Port[index]
-    print ('link=', self.link)
-    self.allow_connection = True
-    self.exchange(3, 0)
-    self.PulseOffButton.setChecked(True)
-#    self.PulseOffClone.setChecked(True)
-    if self.connection:
+    self.link = serial.Serial()
+    self.link.baudrate = 9600
+    self.link.timeout = 0.1
+    self.link.port = self.PB5.Port[index]
+    try: 
+      self.link.open()
+    except serial.serialutil.SerialException:
+      print ('wrong serial port', file=sys.stderr)
+    if self.link.is_open:
+      self.link.reset_input_buffer()
+      self.link.reset_output_buffer()
+      self.link_is_ready=True
+      self.exchange(3, 0)
+      self.PulseOffButton.setChecked(True)
       self.trigger_mode(self.PB5.config['Trigger'])
       self.exchange(2,  self.ThresholdBox.value())
       self.changeex(4,  0, self.AmplitudeBox.value())
@@ -205,6 +212,7 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
       self.RandomGroupBox.setEnabled(True)
       self.ConnectCheckBox.setChecked(True)
     else:
+      self.link_is_ready = False
       self.PulseGroupBox.setEnabled(False)
       self.TriggerGroupBox.setEnabled(False)
       self.RampGroupBox.setEnabled(False)
@@ -221,16 +229,19 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
   
   
   def exchange(self, key, value):
-    if self.SerialPortBox.currentIndex() == 0 and self.allow_connection:
-      self.connection = True
-      command = self.PB5.Tell[key].format(value)  
-      print (command)
-    else:
-      self.connection = False
-      self.PulseOffButton.setChecked(True)
-#      self.PulseOffClone.setChecked(True)
-#    self.statusBar().showMessage(command)
-
+    if self.link_is_ready:
+      command = bytes(self.PB5.Tell[key].format(value)+'\r', 'utf8')
+      self.link.write(command)
+      time.sleep(self.link.timeout)
+      R = self.link.readlines()
+      try:
+        message = '{}: {}'.format(R[0].strip().upper().decode(), R[1].strip().decode())
+      except IndexError:
+        message = 'wrong response'
+        pass
+      print(message, file=sys.stderr)
+      self.statusBar().showMessage(message)
+    
 def main():
   try:
     app    = QtWidgets.QApplication(sys.argv)
@@ -240,7 +251,7 @@ def main():
   except:
     window.closeEvent()
 #    window.tabs.__del__()
-  print("Good Bye!")
+  print("Good Bye!", file=sys.stderr)
   
 if __name__ == '__main__':  main()  
 
