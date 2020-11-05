@@ -25,11 +25,11 @@ class PB5:
   def __init__(self): self.Read_Parameters()
 
   def Save_Parameters(self):
-    with open('settings.pickle', 'wb') as fp: pickle.dump(self.config, fp)
+    with open('PB-5.pickle', 'wb') as fp: pickle.dump(self.config, fp)
     
   def Read_Parameters(self):
     try:     
-      with open('settings.pickle', 'rb') as fp: self.config = pickle.load(fp)
+      with open('PB-5.pickle', 'rb') as fp: self.config = pickle.load(fp)
     except FileNotFoundError: 
       self.config  = {'Port':1, 'Trigger':0, 'Frequency':100, 'Delay':0.25, 'Threshold':5.0, 
                       'Polarity':0, 'Pulse Top':0, 'Width':0.1, 'Rise Time':0, 'Fall Time':0, 'Amplitude':1.0, 'Attenuate':6, 'Clamp':0,

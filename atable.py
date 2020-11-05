@@ -1,8 +1,16 @@
 from PyQt5 import QtCore, QtWidgets
 from random import choices
+import configparser
+
 
 class Active_Table:
+  configure    = configparser.ConfigParser()
   def __init__(self):
+
+    self.configure.read('environment.cfg')
+    if self.configure.has_option('Paths', 'pulser_file'): self.pulser_file = self.configure.get('Paths','pulser_file')
+    else:                                                 self.pulser_file = None
+
     self.active_rows = self.nrows
     self.ResetButton.clicked.connect(self.Reset)
     self.RandomButton.clicked.connect(self.StartStop)
@@ -85,8 +93,11 @@ class Active_Table:
       for i in self.RNG:
         if self.C[0][i].isChecked():
           outs += ' {:5.3f}'.format(self.A[2][i])
+      outs+='\n'
     else: outs = ''
-    with open('PB5.dat', 'wb') as f: f.write(bytes(outs,'utf8'))
+    if self.pulser_file:
+      with open(self.pulser_file, 'wb') as f: 
+        f.write(bytes(outs,'utf8'))
   
   def Select(self):
     for i in self.RNG:
