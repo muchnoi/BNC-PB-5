@@ -4,7 +4,7 @@
 
 Overview
 ========
-This software is for enchanced control of the BNC PB-5 Presision Pulse Generator via its RS-232 port.
+This software is for enhanced control of the BNC PB-5 Precision Pulse Generator via its RS-232 port.
 
 - Project Homepage: https://github.com/muchnoi/BNC-PB-5
 - BNC PB-5 Product Page: https://www.berkeleynucleonics.com/model-pb-5-precision-nim-pulse-generator

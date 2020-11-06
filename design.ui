@@ -661,7 +661,7 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
      <x>0</x>
      <y>0</y>
      <width>821</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -687,6 +687,9 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
    <property name="text">
     <string>Load Settings</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
@@ -710,6 +713,7 @@ QDoubleSpinBox {background-color: #FFFFFF;} </string>
   <tabstop>FallTimeBox</tabstop>
   <tabstop>WidthBox</tabstop>
   <tabstop>ClampBox</tabstop>
+  <tabstop>keVBox</tabstop>
   <tabstop>TriggerModeBox</tabstop>
   <tabstop>FrequencyBox</tabstop>
   <tabstop>DelayBox</tabstop>
