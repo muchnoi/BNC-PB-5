@@ -3,7 +3,7 @@ from random import choices
 import configparser
 
 
-class Active_Table:
+class Random_Mode:
   configure    = configparser.ConfigParser()
   def __init__(self):
 

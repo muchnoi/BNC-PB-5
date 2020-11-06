@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTimer
 import sys, design, pickle 
-from atable import Active_Table
+from random_mode import Random_Mode
 import time, serial 
 
 class PB5:
@@ -41,7 +41,7 @@ class PB5:
                       'OnOff':[True      for i in range(16)]
                       }
 
-class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
+class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Random_Mode):
   def __init__(self): 
     super().__init__()
     self.setupUi(self)
@@ -52,7 +52,7 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Active_Table):
     self.link_is_ready = False
     self.nrows = 16
     self.Init_Widgets()
-    Active_Table.__init__(self)
+    Random_Mode.__init__(self)
     self.Read_Configuration()
     self.actionSave_Settings.triggered.connect(self.Save_Configuration)
     self.actionLoad_Settings.triggered.connect(self.Read_Configuration)

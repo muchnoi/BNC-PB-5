@@ -9,8 +9,9 @@ This software is for enchanced control of the BNC PB-5 Presision Pulse Generator
 - Project Homepage: https://github.com/muchnoi/BNC-PB-5
 - BNC PB-5 Product Page: https://www.berkeleynucleonics.com/model-pb-5-precision-nim-pulse-generator
 
-Now it has not been tested with real pulser.
-All commands are sent to ``stdout``.
+The communications via RS-232 port are implemented by the pySerial python module:
+
+- pySerial Homepage: https://github.com/pyserial/pyserial
 
 
 
