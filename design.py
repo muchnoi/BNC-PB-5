@@ -335,7 +335,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.ConnectionGroupBox.setTitle(_translate("MainWindow", "Connection Settings"))
+        self.ConnectionGroupBox.setTitle(_translate("MainWindow", "Connection"))
         self.ConnectCheckBox.setText(_translate("MainWindow", "Connection:"))
         self.PulseGroupBox.setTitle(_translate("MainWindow", "Pulse Settings"))
         self.PulseOnButton.setText(_translate("MainWindow", "Pulse: ON"))
@@ -346,7 +346,7 @@ class Ui_MainWindow(object):
         self.WidthBox.setSuffix(_translate("MainWindow", " μs"))
         self.keVBox.setPrefix(_translate("MainWindow", "1 V = "))
         self.keVBox.setSuffix(_translate("MainWindow", " keV"))
-        self.TriggerGroupBox.setTitle(_translate("MainWindow", "Trigger Settings"))
+        self.TriggerGroupBox.setTitle(_translate("MainWindow", "Trigger"))
         self.FrequencyBox.setSuffix(_translate("MainWindow", " Hz"))
         self.FrequencyBox.setPrefix(_translate("MainWindow", "Rep. Rate: "))
         self.DelayBox.setPrefix(_translate("MainWindow", "Delay: "))
@@ -363,7 +363,7 @@ class Ui_MainWindow(object):
         self.RampTimeBox.setPrefix(_translate("MainWindow", "Time: "))
         self.RampCyclBox.setPrefix(_translate("MainWindow", "N cycles: "))
         self.RampButton.setText(_translate("MainWindow", "Execute Ramp"))
-        self.RandomGroupBox.setTitle(_translate("MainWindow", "Random Mode Settings"))
+        self.RandomGroupBox.setTitle(_translate("MainWindow", "Random Mode"))
         self.RandomButton.setText(_translate("MainWindow", "Start"))
         self.TimerBox.setSuffix(_translate("MainWindow", " s"))
         self.TimerBox.setPrefix(_translate("MainWindow", "Cycle t = "))
