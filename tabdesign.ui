@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>476</width>
+    <height>675</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QGroupBox { border: 1px solid grey;   border-radius: 10px;   font-weight: bold; font-size: 11pt; color: black; padding:8px; margin:8px; background-color: #F0F0F0;}
+QGroupBox::title {  subcontrol-origin: margin;   subcontrol-position: top center;    padding:  0 5px;  }
+QSpinBox {             background-color: #FFFFFF; }
+QDoubleSpinBox {background-color: #FFFFFF;} </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
+     <widget class="QTabWidget" name="Tabs">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabManual">
+       <attribute name="title">
+        <string>Manual Control</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QFrame" name="frame_5">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QComboBox" name="SerialPortBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="PulseGroupBox">
+             <property name="title">
+              <string>Pulse Settings</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="frame">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_5">
+                 <property name="leftMargin">
+                  <number>4</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>8</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>4</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>8</number>
+                 </property>
+                 <item>
+                  <widget class="QRadioButton" name="PulseOnButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::RightToLeft</enum>
+                   </property>
+                   <property name="text">
+                    <string>Pulse: ON</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="PulseOffButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::RightToLeft</enum>
+                   </property>
+                   <property name="text">
+                    <string>OFF</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="PolarityBox"/>
+              </item>
+              <item>
+               <widget class="QComboBox" name="AttenuateBox"/>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="AmplitudeBox">
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="prefix">
+                 <string>Amplitude: </string>
+                </property>
+                <property name="suffix">
+                 <string> V</string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="maximum">
+                 <double>10.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.250000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="PulseTopBox"/>
+              </item>
+              <item>
+               <widget class="QComboBox" name="RiseTimeBox"/>
+              </item>
+              <item>
+               <widget class="QComboBox" name="FallTimeBox"/>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="WidthBox">
+                <property name="prefix">
+                 <string>Width: </string>
+                </property>
+                <property name="suffix">
+                 <string> μs</string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>0.100000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>10000.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="ClampBox"/>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="keVBox">
+                <property name="prefix">
+                 <string>1 V = </string>
+                </property>
+                <property name="suffix">
+                 <string> keV</string>
+                </property>
+                <property name="minimum">
+                 <double>1.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>10000.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>10.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_7">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QCheckBox" name="ConnectCheckBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="text">
+              <string>Connection:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="TriggerGroupBox">
+             <property name="title">
+              <string>Trigger</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item>
+               <widget class="QComboBox" name="TriggerModeBox"/>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="FrequencyBox">
+                <property name="suffix">
+                 <string> Hz</string>
+                </property>
+                <property name="prefix">
+                 <string>Rep. Rate: </string>
+                </property>
+                <property name="minimum">
+                 <number>2</number>
+                </property>
+                <property name="maximum">
+                 <number>500000</number>
+                </property>
+                <property name="singleStep">
+                 <number>10</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="DelayBox">
+                <property name="prefix">
+                 <string>Delay: </string>
+                </property>
+                <property name="suffix">
+                 <string> μs</string>
+                </property>
+                <property name="minimum">
+                 <double>0.250000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>10000.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="ThresholdBox">
+                <property name="prefix">
+                 <string>Threshold: </string>
+                </property>
+                <property name="suffix">
+                 <string> V</string>
+                </property>
+                <property name="decimals">
+                 <number>1</number>
+                </property>
+                <property name="minimum">
+                 <double>0.100000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>3.500000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.500000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="TriggerButton">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Single Trigger</string>
+                </property>
+                <property name="autoDefault">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="RampGroupBox">
+             <property name="title">
+              <string>Ramp Settings</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item>
+               <widget class="QDoubleSpinBox" name="RampStartBox">
+                <property name="prefix">
+                 <string>Start: </string>
+                </property>
+                <property name="suffix">
+                 <string> V</string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="RampStopBox">
+                <property name="prefix">
+                 <string>Stop: </string>
+                </property>
+                <property name="suffix">
+                 <string> V</string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="RampTimeBox">
+                <property name="suffix">
+                 <string> s</string>
+                </property>
+                <property name="prefix">
+                 <string>Time: </string>
+                </property>
+                <property name="minimum">
+                 <number>30</number>
+                </property>
+                <property name="maximum">
+                 <number>900</number>
+                </property>
+                <property name="singleStep">
+                 <number>10</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="RampCyclBox">
+                <property name="prefix">
+                 <string>N cycles: </string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="RampButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Execute Ramp</string>
+                </property>
+                <property name="autoDefault">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabRandom">
+       <attribute name="title">
+        <string>Random Mode</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QFrame" name="frame_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QPushButton" name="RandomButton">
+             <property name="text">
+              <string>Start</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="TimerBox">
+             <property name="suffix">
+              <string> s</string>
+             </property>
+             <property name="prefix">
+              <string>Cycle t = </string>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="ResetButton">
+             <property name="text">
+              <string>Weights Reset</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="listframe">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame_4">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QFrame" name="frame_6">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>16</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>476</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionSave_Settings"/>
+    <addaction name="actionLoad_Settings"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSave_Settings">
+   <property name="text">
+    <string>Save Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionLoad_Settings">
+   <property name="text">
+    <string>Load Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>PulseOnButton</tabstop>
+  <tabstop>PulseOffButton</tabstop>
+  <tabstop>PolarityBox</tabstop>
+  <tabstop>AttenuateBox</tabstop>
+  <tabstop>AmplitudeBox</tabstop>
+  <tabstop>PulseTopBox</tabstop>
+  <tabstop>RiseTimeBox</tabstop>
+  <tabstop>FallTimeBox</tabstop>
+  <tabstop>WidthBox</tabstop>
+  <tabstop>ClampBox</tabstop>
+  <tabstop>keVBox</tabstop>
+  <tabstop>TriggerModeBox</tabstop>
+  <tabstop>FrequencyBox</tabstop>
+  <tabstop>DelayBox</tabstop>
+  <tabstop>ThresholdBox</tabstop>
+  <tabstop>TriggerButton</tabstop>
+  <tabstop>RampStartBox</tabstop>
+  <tabstop>RampStopBox</tabstop>
+  <tabstop>RampTimeBox</tabstop>
+  <tabstop>RampCyclBox</tabstop>
+  <tabstop>RampButton</tabstop>
+  <tabstop>RandomButton</tabstop>
+  <tabstop>TimerBox</tabstop>
+  <tabstop>ResetButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

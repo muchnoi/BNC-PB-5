@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTimer
-import sys, design, pickle 
+import sys, tabdesign, pickle 
 from random_mode import Random_Mode
 import time, serial 
 
 class PB5:
-  Port    = ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyUSB2', '/dev/ttyS0', '/dev/ttyS1', 'COM1', 'COM1', 'COM3']
+  Port    = ['/dev/BNC-PB5', '/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyUSB2', '/dev/ttyS0', '/dev/ttyS1', 'COM1', 'COM1', 'COM3']
   Trigger = ['Internal', 'Single', 'External', 'External Gated']
   Pulse   = {'Pulse'     :['ON', 'OFF'],
              'Polarity'  :['Negative', 'Positive'],
@@ -41,7 +41,7 @@ class PB5:
                       'OnOff':[True      for i in range(16)]
                       }
 
-class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Random_Mode):
+class Application(QtWidgets.QMainWindow, tabdesign.Ui_MainWindow, Random_Mode):
   def __init__(self): 
     super().__init__()
     self.setupUi(self)
@@ -160,10 +160,12 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Random_Mode):
     self.RampCyclBox.valueChanged.connect(        lambda x: self.exchange(21, int(self.RampCyclBox.value())))
     self.RampButton.clicked.connect(              lambda x: self.exchange(22, ''))
     self.TriggerModeBox.currentIndexChanged.connect(self.trigger_mode)
+    self.Tabs.setCurrentWidget(self.tabManual)
+
 
   def changeex(self, command, vindex, value):
     self.Volts[vindex] = value/self.Volt
-    self.exchange(command, self.Volts[vindex])
+    return self.exchange(command, self.Volts[vindex])
 
   def Units(self, k):
     for Wgt in self.Dimension_Widgets:
@@ -191,32 +193,32 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Random_Mode):
       self.exchange(3, 0)
       self.PulseOffButton.setChecked(True)
       self.trigger_mode(self.PB5.config['Trigger'])
-      self.exchange(2,  self.ThresholdBox.value())
-      self.changeex(4,  0, self.AmplitudeBox.value())
-      self.exchange(5,  self.FrequencyBox.value())
-      self.exchange(6,  int(1000*self.WidthBox.value()))
-      self.exchange(7,  int(1000*self.DelayBox.value()))
-      self.exchange(8,  int(1000*self.PB5.Pulse['Rise Time'][self.RiseTimeBox.currentIndex()]))
-      self.exchange(9,  int(1000*self.PB5.Pulse['Fall Time'][self.FallTimeBox.currentIndex()]))
-      self.exchange(10, self.PulseTopBox.currentIndex())
-      self.exchange(11, self.PolarityBox.currentIndex())
-      self.exchange(12, self.PB5.Pulse['Attenuate'][self.AttenuateBox.currentIndex()])
-      self.exchange(15, self.ClampBox.currentIndex())
-      self.changeex(16, 1, self.RampStartBox.value())
-      self.changeex(17, 2, self.RampStopBox.value())
-      self.exchange(20, int(self.RampTimeBox.value()))
-      self.exchange(21, int(self.RampCyclBox.value()))
+      print(self.exchange(2,  self.ThresholdBox.value()))
+      print(self.changeex(4,  0, self.AmplitudeBox.value()))
+      print(self.exchange(5,  self.FrequencyBox.value()))
+      print(self.exchange(6,  int(1000*self.WidthBox.value())))
+      print(self.exchange(7,  int(1000*self.DelayBox.value())))
+      print(self.exchange(8,  int(1000*self.PB5.Pulse['Rise Time'][self.RiseTimeBox.currentIndex()])))
+      print(self.exchange(9,  int(1000*self.PB5.Pulse['Fall Time'][self.FallTimeBox.currentIndex()])))
+      print(self.exchange(10, self.PulseTopBox.currentIndex()))
+      print(self.exchange(11, self.PolarityBox.currentIndex()))
+      print(self.exchange(12, self.PB5.Pulse['Attenuate'][self.AttenuateBox.currentIndex()]))
+      print(self.exchange(15, self.ClampBox.currentIndex()))
+      print(self.changeex(16, 1, self.RampStartBox.value()))
+      print(self.changeex(17, 2, self.RampStopBox.value()))
+      print(self.exchange(20, int(self.RampTimeBox.value())))
+      print(self.exchange(21, int(self.RampCyclBox.value())))
       self.PulseGroupBox.setEnabled(True)
       self.TriggerGroupBox.setEnabled(True)
       self.RampGroupBox.setEnabled(True)
-      self.RandomGroupBox.setEnabled(True)
+#      self.RandomGroupBox.setEnabled(True)
       self.ConnectCheckBox.setChecked(True)
     else:
       self.link_is_ready = False
       self.PulseGroupBox.setEnabled(False)
       self.TriggerGroupBox.setEnabled(False)
       self.RampGroupBox.setEnabled(False)
-      self.RandomGroupBox.setEnabled(False)
+#      self.RandomGroupBox.setEnabled(False)
       self.ConnectCheckBox.setChecked(False)
         
     
@@ -239,8 +241,9 @@ class Application(QtWidgets.QMainWindow, design.Ui_MainWindow, Random_Mode):
       except IndexError:
         message = 'wrong response'
         pass
-      print(message, file=sys.stderr)
+#      print(message, file=sys.stderr)
       self.statusBar().showMessage(message)
+      return message
     
 def main():
   try:

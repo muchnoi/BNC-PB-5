@@ -42,7 +42,7 @@ class Random_Mode:
       self.W[0][i].valueChanged.connect(self.Weights)
     widget = self.listframe
     widget.setLayout(layout)
-    self.hide = [self.ResetButton, self.TimerBox, self.PulseGroupBox, self.TriggerGroupBox, self.RampGroupBox, self.ConnectionGroupBox, self.listframe]
+    self.hide = [self.ResetButton, self.TimerBox, self.tabManual, self.listframe]
     
 
   def FillTables(self):
